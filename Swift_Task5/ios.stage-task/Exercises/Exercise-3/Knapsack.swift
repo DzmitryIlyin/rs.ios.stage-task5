@@ -39,8 +39,8 @@ public final class Knapsack {
         
         var resultKilometers = 0
         for i in 1...maxWeight {
-            let min = min(foodsKnapsack[foodsKnapsack.count - 1][i], drinksKnapsack[drinksKnapsack.count - 1][maxWeight - i])
-            resultKilometers = min > resultKilometers ? min : resultKilometers
+            let minimumValuable = min(foodsKnapsack[foodsKnapsack.count - 1][i], drinksKnapsack[drinksKnapsack.count - 1][maxWeight - i])
+            resultKilometers = minimumValuable > resultKilometers ? minimumValuable : resultKilometers
         }
         return resultKilometers
     }
