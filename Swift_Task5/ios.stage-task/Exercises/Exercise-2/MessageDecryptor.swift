@@ -43,6 +43,10 @@ class MessageDecryptor: NSObject {
                 wordMatch = String(msg[substringRange])
             }
             
+            if numberMatch > 300 {
+                return message
+            }
+            
             for _ in 0..<numberMatch {
                 matchReplacement += wordMatch
             }
