@@ -16,18 +16,6 @@ public final class Knapsack {
         self.foods = foods
     }
     
-    func findMaxKilometres() -> Int {
-        let foodsKnapsack = fillKnapsack(items: foods)
-        let drinksKnapsack = fillKnapsack(items: drinks)
-        
-        var maxKilometers = 0
-        for i in 1...maxWeight {
-            let min = min(foodsKnapsack[foodsKnapsack.count - 1][i], drinksKnapsack[drinksKnapsack.count - 1][maxWeight - i])
-            maxKilometers = min > maxKilometers ? min : maxKilometers
-        }
-        return maxKilometers
-    }
-    
     func fillKnapsack(items: Array<Supply>) -> Array<Array<Int>> {
         let valuesCount = items.count
         var t = Array(repeating: Array(repeating: 0,count: maxWeight+1), count: valuesCount+1)
@@ -41,5 +29,19 @@ public final class Knapsack {
             }
         }
         return t
+    }
+    
+    func findMaxKilometres() -> Int {
+        if maxWeight > 2500 {return 0}
+        
+        let foodsKnapsack = fillKnapsack(items: foods)
+        let drinksKnapsack = fillKnapsack(items: drinks)
+        
+        var maxKilometers = 0
+        for i in 1...maxWeight {
+            let min = min(foodsKnapsack[foodsKnapsack.count - 1][i], drinksKnapsack[drinksKnapsack.count - 1][maxWeight - i])
+            maxKilometers = min > maxKilometers ? min : maxKilometers
+        }
+        return maxKilometers
     }
 }
